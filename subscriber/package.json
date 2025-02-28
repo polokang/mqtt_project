@@ -1,0 +1,9 @@
+{
+    "name": "mqtt-subscriber",
+    "version": "1.0.0",
+    "dependencies": {
+      "mqtt": "^5.0.0",
+      "redis": "^4.6.7"
+    }
+  }
+  

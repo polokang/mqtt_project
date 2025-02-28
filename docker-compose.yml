@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  emqx:
+    image: emqx/emqx:latest
+    container_name: emqx
+    restart: always
+    ports:
+      - "1883:1883"     # MQTT 端口
+      - "8083:8083"     # WebSocket
+      - "8081:8081"     # Dashboard
+    environment:
+      - EMQX_ALLOW_ANONYMOUS=true  # 允许匿名访问
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  subscriber:
+    build: ./subscriber
+    container_name: mqtt_subscriber
+    restart: always
+    depends_on:
+      - emqx
+      - redis
